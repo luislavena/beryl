@@ -30,18 +30,24 @@ module Fixtures
   end
 
   class SingleRouter < Beryl::Router
-    get "/single", DummyAction
+    routing do
+      get "/single", DummyAction
+    end
   end
 
   class CountingRouter < Beryl::Router
-    post "/count", CountingAction
+    routing do
+      post "/count", CountingAction
+    end
   end
 
   class MultiRouter < Beryl::Router
-    get    "/products",     DummyAction # [0]
-    post   "/products",     DummyAction # [1]
-    get    "/products/:id", DummyAction # [2]
-    delete "/products/:id", DummyAction # [3]
+    routing do
+      get    "/products",     DummyAction # [0]
+      post   "/products",     DummyAction # [1]
+      get    "/products/:id", DummyAction # [2]
+      delete "/products/:id", DummyAction # [3]
+    end
   end
 end
 

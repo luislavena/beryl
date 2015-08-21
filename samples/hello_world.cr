@@ -7,7 +7,9 @@ class HelloAction < Beryl::Action
 end
 
 class HelloRouter < Beryl::Router
-  get "/", HelloAction
+  routing do
+    get "/", HelloAction
+  end
 end
 
 server = HTTP::Server.new(9292, HelloRouter.new)

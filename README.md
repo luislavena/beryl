@@ -17,11 +17,6 @@ end
 **TBD**: See [samples/hello_world.cr](samples/hello_world.cr) for an usage
 example.
 
-## Caveats
-
-At this time, it is not possible to use Beryl in combination with other
-`HTTP::Handler`'s due [manastech/crystal#916](https://github.com/manastech/crystal/issues/916)
-
 ## Development
 
 TODO: Write instructions for development

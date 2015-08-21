@@ -3,8 +3,11 @@ require "http/server"
 
 module Beryl
   abstract class Router < HTTP::Handler
-    macro inherited
-      @@routes = [] of Beryl::Route
+    getter :routes
+
+    def initialize
+      @routes = [] of Beryl::Route
+      populate_routes
     end
 
     def call(request)
@@ -23,14 +26,20 @@ module Beryl
     end
 
     def lookup(request)
-      @@routes.find { |route| route.matches?(request) }
-    end
-
-    def routes
-      @@routes
+      @routes.find { |route| route.matches?(request) }
     end
 
     # DSL
+
+    # TODO: Workaround until class-variables work
+    private def populate_routes
+    end
+
+    macro routing
+      private def populate_routes
+        {{yield}}
+      end
+    end
 
     # TODO: Determine if can be simplified with a single macro
     macro delete(pattern, klass)
@@ -59,7 +68,7 @@ module Beryl
 
     # internal
     macro _add_route(method, pattern, klass)
-      @@routes << Beryl::Route.new({{method}}, {{pattern}}, {{klass}})
+      @routes << Beryl::Route.new({{method}}, {{pattern}}, {{klass}})
     end
   end
 end
