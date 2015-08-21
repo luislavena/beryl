@@ -41,32 +41,14 @@ module Beryl
       end
     end
 
-    # TODO: Determine if can be simplified with a single macro
-    macro delete(pattern, klass)
-      _add_route("DELETE", {{pattern}}, {{klass}})
-    end
+    {% for method in %w(DELETE GET OPTIONS PATCH POST PUT) %}
+      # :nodoc:
+      macro {{method.id.downcase}}(pattern, klass)
+        _add_route({{method}}, \{{pattern}}, \{{klass}})
+      end
+    {% end %}
 
-    macro get(pattern, klass)
-      _add_route("GET", {{pattern}}, {{klass}})
-    end
-
-    macro options(pattern, klass)
-      _add_route("OPTIONS", {{pattern}}, {{klass}})
-    end
-
-    macro patch(pattern, klass)
-      _add_route("PATCH", {{pattern}}, {{klass}})
-    end
-
-    macro post(pattern, klass)
-      _add_route("POST", {{pattern}}, {{klass}})
-    end
-
-    macro put(pattern, klass)
-      _add_route("PUT", {{pattern}}, {{klass}})
-    end
-
-    # internal
+    # :nodoc:
     macro _add_route(method, pattern, klass)
       @routes << Beryl::Route.new({{method}}, {{pattern}}, {{klass}})
     end
