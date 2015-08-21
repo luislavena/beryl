@@ -5,13 +5,6 @@ private def make_route(method, path, klass = Fixtures::DummyAction)
 end
 
 describe Beryl::Route do
-  describe "#action" do
-    it "exposes action for later retrieval" do
-      route = make_route "GET", "/"
-      route.action.should eq(Fixtures::DummyAction)
-    end
-  end
-
   describe "#extract_params" do
     context "with no placeholder or query option" do
       it "returns an empty Hash" do

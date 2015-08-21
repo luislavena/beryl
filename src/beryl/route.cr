@@ -2,10 +2,6 @@ require "cgi"
 
 module Beryl
   struct Route
-    getter :action
-    getter :method
-    getter :pattern
-
     def initialize(@method, @pattern, @action)
       @names = [] of String
       @compiled_pattern = compile
