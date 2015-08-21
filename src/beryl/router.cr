@@ -12,17 +12,10 @@ module Beryl
 
     def call(request)
       if route = lookup(request)
-        invoke_action(request, route)
+        route.call(request)
       else
         call_next(request)
       end
-    end
-
-    # TODO: relocate as `route.call(request)`
-    private def invoke_action(request, route)
-      action = route.action.new(request)
-      params = route.extract_params(request)
-      action.call(params)
     end
 
     def lookup(request)

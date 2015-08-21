@@ -11,6 +11,12 @@ module Beryl
       @compiled_pattern = compile
     end
 
+    def call(request)
+      action = @action.new(request)
+      params = extract_params(request)
+      action.call(params)
+    end
+
     # TODO: Extract to some `Utils` module along with `collect_*`
     def extract_params(request)
       params = {} of String => String
