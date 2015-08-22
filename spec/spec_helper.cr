@@ -26,6 +26,24 @@ module Fixtures
     end
   end
 
+  class ParamsAction < Beryl::Action
+    @@params = {} of String => String
+
+    def self.params
+      @@params
+    end
+
+    def self.reset!
+      @@params.clear
+    end
+
+    def call(params)
+      @@params = params
+
+      HTTP::Response.ok "text/plain", "OK"
+    end
+  end
+
   class EmptyRouter < Beryl::Router
   end
 
