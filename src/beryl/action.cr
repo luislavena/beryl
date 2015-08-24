@@ -1,8 +1,13 @@
 module Beryl
   abstract class Action
-    getter :request
+    macro inherited
+      property :request
 
-    def initialize(@request)
+      def self.call(request, params)
+        instance = new
+        instance.request = request
+        instance.call(params)
+      end
     end
 
     abstract def call(params) : HTTP::Response
