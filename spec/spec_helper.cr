@@ -44,6 +44,34 @@ module Fixtures
     end
   end
 
+  class Fixtures::ScratchAction < Beryl::Action
+    @@called = 0
+    @@instantiated = 0
+
+    def initialize
+      @@instantiated += 1
+    end
+
+    def call(params)
+      @@called += 1
+
+      HTTP::Response.ok "text/plain", "OK"
+    end
+
+    def self.called
+      @@called
+    end
+
+    def self.instantiated
+      @@instantiated
+    end
+
+    def self.reset!
+      @@called = 0
+      @@instantiated = 0
+    end
+  end
+
   class EmptyRouter < Beryl::Router
   end
 
