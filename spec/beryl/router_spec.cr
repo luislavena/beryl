@@ -99,7 +99,6 @@ describe Beryl::Router do
       it "exposes an empty list" do
         router = empty_router
 
-        router.routes.should be_a(Array)
         router.routes.empty?.should be_true
       end
     end

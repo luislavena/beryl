@@ -12,7 +12,6 @@ describe Beryl::Utils::CompiledPattern do
         request = make_request "GET", "/"
         params  = pattern.extract_params(request)
 
-        params.should be_a(Hash)
         params.empty?.should be_true
       end
     end
