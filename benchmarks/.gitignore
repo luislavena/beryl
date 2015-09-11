@@ -1,0 +1,4 @@
+.deps.lock
+.deps/
+compare-frameworks
+libs/

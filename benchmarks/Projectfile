@@ -1,0 +1,6 @@
+deps do
+  github "Codcore/amethyst"
+  github "luislavena/crystal-beryl"
+  github "spalger/crystal-mime"
+  github "ysbaddaden/artanis"
+end
