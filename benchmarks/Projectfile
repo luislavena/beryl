@@ -1,4 +1,5 @@
 deps do
+  github "bcardiff/crystal-routing"
   github "Codcore/amethyst"
   github "luislavena/crystal-beryl"
   github "spalger/crystal-mime"
