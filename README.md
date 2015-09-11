@@ -1,5 +1,7 @@
 # Beryl
 
+[![Build Status](https://travis-ci.org/luislavena/crystal-beryl.svg?branch=master)](https://travis-ci.org/luislavena/crystal-beryl)
+
 Action-focused HTTP routing library for [Crystal](http://crystal-lang.org/)
 
 ## Description
