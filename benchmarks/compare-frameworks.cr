@@ -24,14 +24,14 @@ end
 
 class AmethystApp < Base::App
   routes.draw do
-    get "/", "empty_controller#hello"
-    get "/posts/:id", "empty_controller#hello"
+    get "/", "empty#hello"
+    get "/posts/:id", "empty#hello"
 
     {% for idx in 1..100 %}
-      get "/comments/{{idx}}", "empty_controller#hello"
+      get "/comments/{{idx}}", "empty#hello"
     {% end %}
 
-    get "/bottom", "empty_controller#hello"
+    get "/bottom", "empty#hello"
   end
 end
 
