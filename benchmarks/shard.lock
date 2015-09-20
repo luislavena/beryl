@@ -1,0 +1,34 @@
+version: 1.0
+shards:
+  amethyst:
+    github: Codcore/amethyst
+    commit: 401665cc5c220eadab15f2c50c9cef7acce352da
+
+  artanis:
+    github: ysbaddaden/artanis
+    commit: 33898ea89306796e9ec93588aa4f03b3521da3e0
+
+  beryl:
+    github: luislavena/crystal-beryl
+    commit: 591a7314560ed0dd101d11de53b2d495dd00372d
+
+  crystal-mime:
+    github: spalger/crystal-mime
+    version: HEAD
+
+  mime:
+    github: spalger/crystal-mime
+    commit: bb69613b93dd059f68d1b508a31f83ca6c8eaace
+
+  minitest:
+    github: ysbaddaden/minitest.cr
+    commit: 004a873bf4861fa2d0f850ce3e753d5a77305de6
+
+  minitest.cr:
+    github: ysbaddaden/minitest.cr
+    version: 0.1.4
+
+  routing:
+    github: bcardiff/crystal-routing
+    commit: 2289be7382ee027c0905e5c56523356345e46541
+

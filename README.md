@@ -17,12 +17,12 @@ allows you to integrate it with other middleware to build your final stack.
 
 ## Installation
 
-Add it to `Projectfile`
+Add it to your project's [shard.yml](https://github.com/ysbaddaden/shards) file:
 
-```crystal
-deps do
-  github "luislavena/crystal-beryl"
-end
+```yml
+dependencies:
+  beryl:
+    github: luislavena/crystal-beryl
 ```
 
 ## Usage

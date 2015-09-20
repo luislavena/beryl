@@ -1,4 +1,5 @@
 .deps.lock
 .deps/
+.shards/
 compare-frameworks
 libs/
