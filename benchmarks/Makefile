@@ -1,7 +1,7 @@
-.deps.lock: Projectfile
+shard.lock: shard.yml
 	crystal deps
 
-frameworks: .deps.lock
+frameworks: shard.lock
 	crystal build --release compare-frameworks.cr
 	./compare-frameworks
 
