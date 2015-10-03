@@ -57,7 +57,7 @@ module Beryl
     # At this point is where the request received is dispatched into the
     # action you defined.
     #
-    # Routes are evaluated secuentially for matches, so priority is
+    # Routes are evaluated sequentially for matches, so priority is
     # important when defining them. Is recommended you define the shorter
     # routes before the specific ones (ie. route for Home before Products).
     def call(request)
@@ -102,10 +102,10 @@ module Beryl
     # * `put(pattern, action)` - Defines a route that accepts a PUT request.
     # * `delete(pattern, action)` - Defines a route that accepts a DELETE request.
     #
-    # `pattern` refers to a `Strign` that indicates the matching path from
+    # `pattern` refers to a `String` that indicates the matching path from
     # request. This pattern can define a simple path (eg. `/products`) or one
     # with named segments (eg. `/products/:id`). Named segments are extracted
-    # from the request and accesible to the action via `params`.
+    # from the request and accessible to the action via `params`.
     #
     # `action` refers to a class that inherits from `Beryl::Action`. On each
     # matching request, a new instance of the action is created to process
