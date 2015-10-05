@@ -69,6 +69,18 @@ server.listen
 
 You can see other examples in the [samples/](samples/) directory.
 
+### Radix Tree implementation
+
+This project implement a [Radix tree](https://en.wikipedia.org/wiki/Radix_tree)
+to perform route matching.
+
+This has been inspired and adapted from [julienschmidt/httprouter](https://github.com/julienschmidt/httprouter) and
+[spriet2000/vertx-http-router](https://github.com/spriet2000/vertx-http-router)
+Go and Java implementations, respectively.
+
+Changes to logic and optimizations have been made to take advantage of
+Crystal's features.
+
 ## Development
 
 - [x] HTTP Handler integration
