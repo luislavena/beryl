@@ -65,10 +65,10 @@ module Beryl
         return @key if @key
 
         key = String.build { |io|
-          @nodes.each do |node|
-            io << node.key
-          end
-        }
+                @nodes.each do |node|
+                  io << node.key
+                end
+              }
 
         @key = key
       end

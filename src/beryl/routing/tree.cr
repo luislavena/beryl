@@ -107,7 +107,7 @@ module Beryl
         # determine split point difference between path and key
         # compare if path is larger than key
         if path_reader.pos == 0 ||
-          (path_reader.pos < path.size && path_reader.pos >= node.key.size)
+           (path_reader.pos < path.size && path_reader.pos >= node.key.size)
 
           # determine if a child of this node contains the remaining part
           # of the path
@@ -209,7 +209,6 @@ module Beryl
 
       # :nodoc:
       private def find(path : String, result : Result, node : Node, first = false)
-
         # special consideration when comparing the first node vs. others
         # in case of node key and path being the same, return the node
         # instead of walking character by character
@@ -226,8 +225,8 @@ module Beryl
         # rules.
         while key_reader.has_next? && path_reader.has_next? &&
               (key_reader.current_char == '*' ||
-                key_reader.current_char == ':' ||
-                path_reader.current_char == key_reader.current_char)
+              key_reader.current_char == ':' ||
+              path_reader.current_char == key_reader.current_char)
 
           case key_reader.current_char
           when '*'
@@ -279,8 +278,8 @@ module Beryl
         if path_reader.has_next?
           # using trailing slash?
           if node.key.size > 0 &&
-              path_reader.pos + 1 == path.size &&
-              path_reader.current_char == '/'
+             path_reader.pos + 1 == path.size &&
+             path_reader.current_char == '/'
 
             result.use node
             return
@@ -291,7 +290,7 @@ module Beryl
           node.children.each do |child|
             # check if child first character matches the new path
             if child.key[0]? == new_path[0]? ||
-                child.key[0]? == '*' || child.key[0]? == ':'
+               child.key[0]? == '*' || child.key[0]? == ':'
 
               # consider this node for key but don't use payload
               result.use node, payload: false
@@ -306,7 +305,7 @@ module Beryl
         if key_reader.has_next?
           # determine if there is just a trailing slash?
           if key_reader.pos + 1 == node.key.size &&
-              key_reader.current_char == '/'
+             key_reader.current_char == '/'
 
             result.use node
             return
@@ -314,8 +313,8 @@ module Beryl
 
           # check if remaining part is catch all
           if key_reader.pos < node.key.size &&
-              key_reader.current_char == '/' &&
-              key_reader.peek_next_char == '*'
+             key_reader.current_char == '/' &&
+             key_reader.peek_next_char == '*'
 
             # skip '*'
             key_reader.next_char
