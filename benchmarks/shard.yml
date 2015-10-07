@@ -8,9 +8,6 @@ dependencies:
   artanis:
     github: ysbaddaden/artanis
     branch: master
-  beryl:
-    github: luislavena/crystal-beryl
-    branch: master
   mime:
     github: spalger/crystal-mime
     branch: master

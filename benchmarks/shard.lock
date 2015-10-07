@@ -8,10 +8,6 @@ shards:
     github: ysbaddaden/artanis
     commit: 33898ea89306796e9ec93588aa4f03b3521da3e0
 
-  beryl:
-    github: luislavena/crystal-beryl
-    commit: b9a590a03fdb0ea344bc8bf8dd3a518e2ecdbd5f
-
   mime:
     github: spalger/crystal-mime
     commit: bb69613b93dd059f68d1b508a31f83ca6c8eaace
