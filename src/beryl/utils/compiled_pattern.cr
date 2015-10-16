@@ -1,4 +1,4 @@
-require "cgi"
+require "http/params"
 
 module Beryl
   module Utils
@@ -73,11 +73,9 @@ module Beryl
       def extract_params(request)
         params = {} of String => String
 
-        uri = request.uri
-
-        if match = @compiled.match(uri.path.to_s)
+        if match = @compiled.match(request.path.to_s)
           _collect_names(match, params)
-          _collect_query(uri.query.to_s, params)
+          _collect_query(request.query.to_s, params)
         end
 
         params
@@ -96,7 +94,7 @@ module Beryl
       # # => false
       # ```
       def matches?(request)
-        @compiled.match(request.uri.path.to_s) ? true : false
+        @compiled.match(request.path.to_s) ? true : false
       end
 
       # :nodoc:
@@ -112,7 +110,7 @@ module Beryl
       private def _collect_query(query, params)
         return if query.empty?
 
-        CGI.parse(query) do |key, value|
+        HTTP::Params.parse(query) do |key, value|
           next if key.empty?
 
           params[key] = value
