@@ -48,10 +48,10 @@ module Beryl
       # :nodoc:
       private def compile
         prepared = @pattern.gsub(/:\w+/) { |match|
-          @names << match[1..-1]
+                     @names << match[1..-1]
 
-          "([^/?#]+)"
-        }
+                     "([^/?#]+)"
+                   }
 
         Regex.new("^#{prepared}$")
       end

@@ -17,7 +17,7 @@ module Beryl
   #
   # route.call(request)
   # # => #<HTTP::Response:... @status_code=200, @body="Hello!" ...>
-  #```
+  # ```
   struct Route
     # Instantiate a Route
     #
