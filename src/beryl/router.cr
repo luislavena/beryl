@@ -1,4 +1,5 @@
-require "./route"
+require "./routing/result"
+require "./routing/tree"
 require "http/server"
 
 module Beryl
@@ -40,11 +41,14 @@ module Beryl
   # (standalone or within a middleware stack).
   abstract class Router < HTTP::Handler
     # Provides easy access and inspection to defined routes.
-    getter :routes
+    getter :routeset
 
     # Initialize the router.
     def initialize
-      @routes = [] of Beryl::Route
+      @routeset = Hash(String, Routing::Tree).new { |hash, key|
+                    hash[key] = Routing::Tree.new
+                  }
+
       populate_routes
     end
 
@@ -56,36 +60,46 @@ module Beryl
     #
     # At this point is where the request received is dispatched into the
     # action you defined.
-    #
-    # Routes are evaluated sequentially for matches, so priority is
-    # important when defining them. Is recommended you define the shorter
-    # routes before the specific ones (ie. route for Home before Products).
     def call(request)
-      if route = lookup(request)
-        route.call(request)
-      else
-        call_next(request)
+      result = lookup(request)
+
+      if result && result.found?
+        action = result.payload
+
+        if action.responds_to?(:call)
+          params = result.params
+          combine_query_params request, params
+
+          return action.call(request, params)
+        end
+      end
+
+      call_next(request)
+    end
+
+    # :nodoc:
+    private def combine_query_params(request, params)
+      return unless request.query
+
+      HTTP::Params.parse(request.query || "") do |key, value|
+        next if key.empty?
+
+        params[key] = value
       end
     end
 
-    # Return the `Route` instance that matches the supplied request.
-    #
-    # Example:
-    # ```
-    # class App < Beryl::Router
-    #   routing do
-    #     get "/", Home
-    #   end
-    # end
-    #
-    # router  = App.new
-    # request = HTTP::Request.new "GET", "/"
-    #
-    # router.lookup(request)
-    # # => #<Beryl::Route:... @action=Home ...>
-    # ```
-    def lookup(request)
-      @routes.find { |route| route.matches?(request) }
+    # :nodoc:
+    private def lookup(request)
+      return unless @routeset.has_key?(request.method)
+
+      tree = @routeset[request.method]
+
+      # ensure request path is at least '/'
+      unless path = request.path
+        path = "/"
+      end
+
+      tree.find(path)
     end
 
     # :nodoc:
@@ -138,7 +152,7 @@ module Beryl
 
     # :nodoc:
     macro _add_route(method, pattern, klass)
-      @routes << Beryl::Route.new({{method}}, {{pattern}}, {{klass}})
+      @routeset[{{method}}].add({{pattern}}, {{klass}})
     end
   end
 end

@@ -3,7 +3,7 @@ require "http/request"
 
 require "amethyst"
 require "artanis"
-require "beryl"
+require "../src/beryl"
 require "routing"
 
 EMPTY_RESPONSE = ""
