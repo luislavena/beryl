@@ -2,11 +2,11 @@ version: 1.0
 shards:
   amethyst:
     github: Codcore/amethyst
-    commit: ad53218cf362e46b3236c68ffb08fc6840404962
+    commit: 0a54e305e8100b04242f7e873c96950d0eee3567
 
   artanis:
     github: ysbaddaden/artanis
-    commit: 33898ea89306796e9ec93588aa4f03b3521da3e0
+    commit: 00517466b8264e8c1d7d8244fefa3027f8b5775b
 
   mime:
     github: spalger/crystal-mime

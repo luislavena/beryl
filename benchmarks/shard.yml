@@ -8,6 +8,3 @@ dependencies:
   artanis:
     github: ysbaddaden/artanis
     branch: master
-  mime:
-    github: spalger/crystal-mime
-    branch: master
