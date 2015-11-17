@@ -11,7 +11,3 @@ dependencies:
   mime:
     github: spalger/crystal-mime
     branch: master
-  routing:
-    # TODO: use fork for Crystal 0.8.0 support
-    github: benoist/crystal-routing
-    branch: master

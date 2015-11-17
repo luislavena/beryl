@@ -16,7 +16,3 @@ shards:
     github: ysbaddaden/minitest.cr
     commit: 47202b74aa97e415be1ae5d7b19de472b66aee2b
 
-  routing:
-    github: benoist/crystal-routing
-    commit: 367abba2af4bd5e87f276b27d800a8f667a1dbf5
-
