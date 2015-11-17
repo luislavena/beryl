@@ -28,10 +28,10 @@ module Beryl
     # # => [3, 2, 1]
     # ```
     class Node
-      getter    :key
-      getter?   :placeholder
+      getter :key
+      getter? :placeholder
       property! :payload
-      property  :children
+      property :children
 
       # Returns the priority of the Node based on it's *key*
       #

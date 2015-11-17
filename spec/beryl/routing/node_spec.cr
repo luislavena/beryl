@@ -71,7 +71,7 @@ module Beryl::Routing
 
     describe "#sort!" do
       it "orders children by priority" do
-        root  = Node.new("/")
+        root = Node.new("/")
         node1 = Node.new("a")
         node2 = Node.new("bc")
         node3 = Node.new("def")
@@ -85,7 +85,7 @@ module Beryl::Routing
       end
 
       it "orders catch all and named parameters lower than others" do
-        root  = Node.new("/")
+        root = Node.new("/")
         node1 = Node.new("*filepath")
         node2 = Node.new("abc")
         node3 = Node.new(":query")

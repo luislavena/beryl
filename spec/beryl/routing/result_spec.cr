@@ -12,7 +12,7 @@ module Beryl::Routing
 
       context "with a payload" do
         it "returns true" do
-          node   = Node.new("/", :root)
+          node = Node.new("/", :root)
           result = Result.new
           result.use node
 
@@ -31,7 +31,7 @@ module Beryl::Routing
 
       context "given one used node" do
         it "returns the node key" do
-          node   = Node.new("/", :root)
+          node = Node.new("/", :root)
           result = Result.new
           result.use node
 
@@ -41,8 +41,8 @@ module Beryl::Routing
 
       context "using multiple nodes" do
         it "combines the node keys" do
-          node1  = Node.new("/", :root)
-          node2  = Node.new("about", :about)
+          node1 = Node.new("/", :root)
+          node2 = Node.new("about", :about)
           result = Result.new
           result.use node1
           result.use node2
@@ -54,7 +54,7 @@ module Beryl::Routing
 
     describe "#use" do
       it "uses the node payload" do
-        node   = Node.new("/", :root)
+        node = Node.new("/", :root)
         result = Result.new
         result.payload?.should be_falsey
 

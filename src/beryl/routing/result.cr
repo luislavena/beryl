@@ -14,12 +14,12 @@ module Beryl
     # A Result is also used recursively by `Tree#find` when collecting extra
     # information like *params*.
     class Result
-      getter  :params
+      getter :params
       getter! :payload
 
       # :nodoc:
       def initialize
-        @nodes  = [] of Node
+        @nodes = [] of Node
         @params = {} of String => String
       end
 
@@ -65,10 +65,10 @@ module Beryl
         return @key if @key
 
         key = String.build { |io|
-                @nodes.each do |node|
-                  io << node.key
-                end
-              }
+          @nodes.each do |node|
+            io << node.key
+          end
+        }
 
         @key = key
       end

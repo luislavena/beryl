@@ -89,9 +89,9 @@ module Fixtures
 
   class MultiRouter < Beryl::Router
     routing do
-      get    "/products",     DummyAction # [0]
-      post   "/products",     DummyAction # [1]
-      get    "/products/:id", DummyAction # [2]
+      get "/products", DummyAction        # [0]
+      post "/products", DummyAction       # [1]
+      get "/products/:id", DummyAction    # [2]
       delete "/products/:id", DummyAction # [3]
     end
   end

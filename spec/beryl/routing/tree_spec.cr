@@ -60,10 +60,10 @@ module Beryl::Routing
         it "inserts multiple parent nodes" do
           tree = Tree.new
           tree.add "/", :root
-          tree.add "/admin/users",    :users
+          tree.add "/admin/users", :users
           tree.add "/admin/products", :products
-          tree.add "/blog/tags",      :tags
-          tree.add "/blog/articles",  :articles
+          tree.add "/blog/tags", :tags
+          tree.add "/blog/articles", :articles
 
           # /                 (:root)
           # +-admin/
@@ -88,10 +88,10 @@ module Beryl::Routing
 
         it "inserts multiple nodes with mixed parents" do
           tree = Tree.new
-          tree.add "/authorizations",     :authorizations
+          tree.add "/authorizations", :authorizations
           tree.add "/authorizations/:id", :authorization
-          tree.add "/applications",       :applications
-          tree.add "/events",             :events
+          tree.add "/applications", :applications
+          tree.add "/events", :events
 
           # /
           # +-events               (:events)
@@ -108,10 +108,10 @@ module Beryl::Routing
 
         it "supports insertion of mixed routes out of order" do
           tree = Tree.new
-          tree.add "/user/repos",        :my_repos
+          tree.add "/user/repos", :my_repos
           tree.add "/users/:user/repos", :user_repos
-          tree.add "/users/:user",       :user
-          tree.add "/user",              :me
+          tree.add "/users/:user", :user
+          tree.add "/user", :me
 
           # /user                (:me)
           #     +-/repos         (:my_repos)
@@ -146,9 +146,9 @@ module Beryl::Routing
         it "prioritizes nodes correctly" do
           tree = Tree.new
           tree.add "/", :root
-          tree.add "/*filepath",         :all
-          tree.add "/products",          :products
-          tree.add "/products/:id",      :product
+          tree.add "/*filepath", :all
+          tree.add "/products", :products
+          tree.add "/products/:id", :product
           tree.add "/products/:id/edit", :edit
           tree.add "/products/featured", :featured
 
@@ -231,10 +231,10 @@ module Beryl::Routing
         it "finds matching path across parents" do
           tree = Tree.new
           tree.add "/", :root
-          tree.add "/admin/users",    :users
+          tree.add "/admin/users", :users
           tree.add "/admin/products", :products
-          tree.add "/blog/tags",      :tags
-          tree.add "/blog/articles",  :articles
+          tree.add "/blog/tags", :tags
+          tree.add "/blog/articles", :articles
 
           result = tree.find("/blog/tags/")
           result.found?.should be_true
@@ -294,8 +294,8 @@ module Beryl::Routing
         it "finds matching path" do
           tree = Tree.new
           tree.add "/", :root
-          tree.add "/products",          :products
-          tree.add "/products/:id",      :product
+          tree.add "/products", :products
+          tree.add "/products/:id", :product
           tree.add "/products/:id/edit", :edit
 
           result = tree.find("/products/10")
@@ -307,7 +307,7 @@ module Beryl::Routing
         it "does not find partial matching path" do
           tree = Tree.new
           tree.add "/", :root
-          tree.add "/products",          :products
+          tree.add "/products", :products
           tree.add "/products/:id/edit", :edit
 
           result = tree.find("/products/10")
@@ -317,8 +317,8 @@ module Beryl::Routing
         it "returns named parameters in result" do
           tree = Tree.new
           tree.add "/", :root
-          tree.add "/products",          :products
-          tree.add "/products/:id",      :product
+          tree.add "/products", :products
+          tree.add "/products/:id", :product
           tree.add "/products/:id/edit", :edit
 
           result = tree.find("/products/10/edit")
@@ -344,9 +344,9 @@ module Beryl::Routing
         it "finds matching path" do
           tree = Tree.new
           tree.add "/", :root
-          tree.add "/*filepath",         :all
-          tree.add "/products",          :products
-          tree.add "/products/:id",      :product
+          tree.add "/*filepath", :all
+          tree.add "/products", :products
+          tree.add "/products/:id", :product
           tree.add "/products/:id/edit", :edit
           tree.add "/products/featured", :featured
 

@@ -40,14 +40,18 @@ module Beryl
       #
       # ```
       # tree = Tree.new
-      # tree.add "/", :root           # /         (:root)
       #
-      # tree.add "/abc", :abc         # /         (:root)
-      #                               # \-abc     (:abc)
+      # # /         (:root)
+      # tree.add "/", :root
       #
-      # tree.add "/abcxyz", :xyz      # /         (:root)
-      #                               # \-abc     (:abc)
-      #                               #     \-xyz (:xyz)
+      # # /         (:root)
+      # # \-abc     (:abc)
+      # tree.add "/abc", :abc
+      #
+      # # /         (:root)
+      # # \-abc     (:abc)
+      # #     \-xyz (:xyz)
+      # tree.add "/abcxyz", :xyz
       # ```
       #
       # Nodes inside the tree will be adjusted to accomodate the different
@@ -55,15 +59,19 @@ module Beryl
       #
       # ```
       # tree = Tree.new
-      # tree.add "/", :root                       # /                    (:root)
       #
-      # tree.add "/products/:id", :product        # /                    (:root)
-      #                                           # \-products/:id       (:product)
+      # # / (:root)
+      # tree.add "/", :root
       #
-      # tree.add "/products/featured", :featured  # /                    (:root)
-      #                                           # \-products/
-      #                                           #           +-featured (:featured)
-      #                                           #           \-:id      (:product)
+      # # /                   (:root)
+      # # \-products/:id      (:product)
+      # tree.add "/products/:id", :product
+      #
+      # # /                    (:root)
+      # # \-products/
+      # #           +-featured (:featured)
+      # #           \-:id      (:product)
+      # tree.add "/products/featured", :featured
       # ```
       #
       # Catch all (globbing) and named paramters *path* will be located with
@@ -71,14 +79,18 @@ module Beryl
       #
       # ```
       # tree = Tree.new
-      # tree.add "/", :root           # /           (:root)
       #
-      # tree.add "/*filepath", :all   # /           (:root)
-      #                               # \-*filepath (:all)
+      # # /           (:root)
+      # tree.add "/", :root
       #
-      # tree.add "/about", :about     # /           (:root)
-      #                               # +-about     (:about)
-      #                               # \-*filepath (:all)
+      # # /           (:root)
+      # # \-*filepath (:all)
+      # tree.add "/*filepath", :all
+      #
+      # # /           (:root)
+      # # +-about     (:about)
+      # # \-*filepath (:all)
+      # tree.add "/about", :about
       # ```
       def add(path : String, payload)
         root = @root
@@ -93,7 +105,7 @@ module Beryl
 
       # :nodoc:
       private def add(path : String, payload, node : Node)
-        key_reader  = Char::Reader.new(node.key)
+        key_reader = Char::Reader.new(node.key)
         path_reader = Char::Reader.new(path)
 
         # move cursor position to last shared character between key and path
@@ -108,7 +120,6 @@ module Beryl
         # compare if path is larger than key
         if path_reader.pos == 0 ||
            (path_reader.pos < path.size && path_reader.pos >= node.key.size)
-
           # determine if a child of this node contains the remaining part
           # of the path
           added = false
@@ -131,22 +142,22 @@ module Beryl
 
           # adjust priorities
           node.sort!
-
-        # determine if path matches key and potentially be a duplicate
-        # and raise if is the case
         elsif path_reader.pos == path.size && path_reader.pos == node.key.size
+          # determine if path matches key and potentially be a duplicate
+          # and raise if is the case
+
           if node.payload?
             raise DuplicateError.new(path)
           else
             # assign payload since this is an empty node
             node.payload = payload
           end
-
-        # determine if current node key needs to be split to accomodate new
-        # children nodes
         elsif path_reader.pos > 0 && path_reader.pos < node.key.size
+          # determine if current node key needs to be split to accomodate new
+          # children nodes
+
           # build new node with partial key and adjust existing one
-          new_key      = node.key.byte_slice(path_reader.pos)
+          new_key = node.key.byte_slice(path_reader.pos)
           swap_payload = node.payload? ? node.payload : nil
 
           new_node = Node.new(new_key, swap_payload)
@@ -199,7 +210,7 @@ module Beryl
       # ```
       def find(path : String)
         result = Result.new
-        root   = @root
+        root = @root
 
         # walk the tree from root (first time)
         find path, result, root, first: true
@@ -217,7 +228,7 @@ module Beryl
           return
         end
 
-        key_reader  = Char::Reader.new(node.key)
+        key_reader = Char::Reader.new(node.key)
         path_reader = Char::Reader.new(path)
 
         # walk both path and key while both have characters and they continue
@@ -227,12 +238,11 @@ module Beryl
               (key_reader.current_char == '*' ||
               key_reader.current_char == ':' ||
               path_reader.current_char == key_reader.current_char)
-
           case key_reader.current_char
           when '*'
             # deal with catch all (globbing) parameter
             # extract parameter name from key (exclude *) and value from path
-            name  = key_reader.string.byte_slice(key_reader.pos + 1)
+            name = key_reader.string.byte_slice(key_reader.pos + 1)
             value = path_reader.string.byte_slice(path_reader.pos)
 
             # add this to result
@@ -244,11 +254,11 @@ module Beryl
             # deal with named parameter
             # extract parameter name from key (from : until / or EOL) and
             # value from path (same rules as key)
-            key_size  = _detect_param_size(key_reader)
+            key_size = _detect_param_size(key_reader)
             path_size = _detect_param_size(path_reader)
 
             # obtain key and value using calculated sizes
-            name  = key_reader.string.byte_slice(key_reader.pos + 1, key_size)
+            name = key_reader.string.byte_slice(key_reader.pos + 1, key_size)
             value = path_reader.string.byte_slice(path_reader.pos, path_size)
 
             # add this information to result
@@ -280,7 +290,6 @@ module Beryl
           if node.key.size > 0 &&
              path_reader.pos + 1 == path.size &&
              path_reader.current_char == '/'
-
             result.use node
             return
           end
@@ -291,7 +300,6 @@ module Beryl
             # check if child first character matches the new path
             if child.key[0]? == new_path[0]? ||
                child.key[0]? == '*' || child.key[0]? == ':'
-
               # consider this node for key but don't use payload
               result.use node, payload: false
 
@@ -306,7 +314,6 @@ module Beryl
           # determine if there is just a trailing slash?
           if key_reader.pos + 1 == node.key.size &&
              key_reader.current_char == '/'
-
             result.use node
             return
           end
@@ -315,7 +322,6 @@ module Beryl
           if key_reader.pos < node.key.size &&
              key_reader.current_char == '/' &&
              key_reader.peek_next_char == '*'
-
             # skip '*'
             key_reader.next_char
 

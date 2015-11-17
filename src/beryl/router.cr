@@ -11,11 +11,11 @@ module Beryl
   # ```
   # class Products < Beryl::Router
   #   routing do
-  #     get     "/",    Products::Index
-  #     post    "/",    Products::Create
-  #     put     "/:id", Products::Update
-  #     delete  "/:id", Products::Destroy
-  #     options "/",    Products::CORS
+  #     get "/", Products::Index
+  #     post "/", Products::Create
+  #     put "/:id", Products::Update
+  #     delete "/:id", Products::Destroy
+  #     options "/", Products::CORS
   #   end
   # end
   # ```
@@ -27,7 +27,7 @@ module Beryl
   # handlers = [
   #   HTTP::LogHandler.new,
   #   HTTP::ExceptionHandler.new,
-  #   Products.new
+  #   Products.new,
   # ]
   #
   # server = HTTP::Server.new(8080, handlers)
@@ -46,8 +46,8 @@ module Beryl
     # Initialize the router.
     def initialize
       @routeset = Hash(String, Routing::Tree).new { |hash, key|
-                    hash[key] = Routing::Tree.new
-                  }
+        hash[key] = Routing::Tree.new
+      }
 
       populate_routes
     end
