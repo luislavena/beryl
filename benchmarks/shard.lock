@@ -8,6 +8,10 @@ shards:
     github: ysbaddaden/artanis
     commit: 00517466b8264e8c1d7d8244fefa3027f8b5775b
 
+  kemal:
+    github: kemalcr/kemal
+    commit: 79ef2f30f7969dd12e591ad112149b208fae4940
+
   mime:
     github: spalger/crystal-mime
     commit: bb69613b93dd059f68d1b508a31f83ca6c8eaace
