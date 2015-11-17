@@ -1,4 +1,4 @@
-require "../src/beryl"
+require "../../src/beryl"
 
 EMPTY_RESPONSE = ""
 MIME_HTML      = "text/html"
