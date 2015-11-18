@@ -2,11 +2,15 @@ version: 1.0
 shards:
   amethyst:
     github: Codcore/amethyst
-    commit: ad53218cf362e46b3236c68ffb08fc6840404962
+    commit: 0a54e305e8100b04242f7e873c96950d0eee3567
 
   artanis:
     github: ysbaddaden/artanis
-    commit: 33898ea89306796e9ec93588aa4f03b3521da3e0
+    commit: 00517466b8264e8c1d7d8244fefa3027f8b5775b
+
+  kemal:
+    github: kemalcr/kemal
+    commit: 79ef2f30f7969dd12e591ad112149b208fae4940
 
   mime:
     github: spalger/crystal-mime
@@ -15,8 +19,4 @@ shards:
   minitest:
     github: ysbaddaden/minitest.cr
     commit: 47202b74aa97e415be1ae5d7b19de472b66aee2b
-
-  routing:
-    github: benoist/crystal-routing
-    commit: 367abba2af4bd5e87f276b27d800a8f667a1dbf5
 
