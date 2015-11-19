@@ -1,2 +1,10 @@
 name: beryl
 version: 0.1.0
+
+description: |
+  Action-focused HTTP routing library
+
+authors:
+  - Luis Lavena <luislavena@gmail.com>
+
+license: MIT
