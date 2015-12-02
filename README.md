@@ -1,6 +1,6 @@
 # Beryl
 
-[![Build Status](https://travis-ci.org/luislavena/crystal-beryl.svg?branch=master)](https://travis-ci.org/luislavena/crystal-beryl)
+[![Build Status](https://travis-ci.org/luislavena/beryl.svg?branch=master)](https://travis-ci.org/luislavena/beryl)
 
 Action-focused HTTP routing library for [Crystal](http://crystal-lang.org/)
 
@@ -22,7 +22,7 @@ Add it to your project's [shard.yml](https://github.com/ysbaddaden/shards) file:
 ```yml
 dependencies:
   beryl:
-    github: luislavena/crystal-beryl
+    github: luislavena/beryl
 ```
 
 ## Usage
