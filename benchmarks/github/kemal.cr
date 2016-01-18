@@ -1,4 +1,5 @@
 require "kemal"
+logging false
 
 EMPTY_RESPONSE = ""
 MIME_HTML      = "text/html"
