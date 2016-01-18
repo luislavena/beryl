@@ -9,5 +9,5 @@ dependencies:
     github: ysbaddaden/artanis
     branch: master
   kemal:
-    github: kemalcr/kemal
+    github: sdogruyol/kemal
     branch: master

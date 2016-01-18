@@ -9,14 +9,14 @@ shards:
     commit: 00517466b8264e8c1d7d8244fefa3027f8b5775b
 
   kemal:
-    github: kemalcr/kemal
-    commit: 79ef2f30f7969dd12e591ad112149b208fae4940
+    github: sdogruyol/kemal
+    commit: 2cc4c17c8003e6cc029cc21827c3ede953067cd8
 
   mime:
     github: spalger/crystal-mime
-    commit: bb69613b93dd059f68d1b508a31f83ca6c8eaace
+    commit: 945d357157d4dbcab7683b7216e20b6477a9d573
 
   minitest:
     github: ysbaddaden/minitest.cr
-    commit: 47202b74aa97e415be1ae5d7b19de472b66aee2b
+    commit: a3299eafebed071987f14c01591cb71d4395ce85
 
